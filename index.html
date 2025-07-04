@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória - Bahia Aventuras</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="title-main">Jogo da Memória</span>
+                <span class="title-sub">Aventuras na Bahia</span>
+            </h1>
+            <div class="sun-icon">☀️</div>
+        </header>
+
+        <div class="game-info">
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="score-label">Movimentos:</span>
+                    <span class="score-value" id="moves">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Tempo:</span>
+                    <span class="score-value" id="timer">00:00</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Pares:</span>
+                    <span class="score-value" id="pairs">0/6</span>
+                </div>
+            </div>
+            <button class="btn-restart" id="restartBtn">🔄 Novo Jogo</button>
+        </div>
+
+        <div class="game-board" id="gameBoard">
+            <!-- As cartas serão geradas dinamicamente pelo JavaScript -->
+        </div>
+
+        <div class="victory-modal" id="victoryModal">
+            <div class="modal-content">
+                <h2>🎉 Parabéns! 🎉</h2>
+                <p>Você completou sua aventura pela Bahia!</p>
+                <div class="final-stats">
+                    <p>Movimentos: <span id="finalMoves"></span></p>
+                    <p>Tempo: <span id="finalTime"></span></p>
+                </div>
+                <button class="btn-play-again" id="playAgainBtn">🏖️ Jogar Novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>🌴 Explore as belezas da Bahia! 🌊</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

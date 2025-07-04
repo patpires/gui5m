@@ -1,0 +1,431 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 25%, #FFD23F 50%, #06D6A0 75%, #118AB2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animação de fundo com ondas */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: wave-animation 6s ease-in-out infinite;
+}
+
+.wave1 {
+    animation-delay: 0s;
+    opacity: 0.3;
+}
+
+.wave2 {
+    animation-delay: 2s;
+    opacity: 0.2;
+    height: 80px;
+}
+
+.wave3 {
+    animation-delay: 4s;
+    opacity: 0.1;
+    height: 60px;
+}
+
+@keyframes wave-animation {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0px);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-main {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #FFFFFF;
+    text-shadow: 3px 3px 0px #FF6B35, 6px 6px 0px #F7931E;
+    letter-spacing: 2px;
+}
+
+.title-sub {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: #FFD23F;
+    text-shadow: 2px 2px 0px #FF6B35;
+}
+
+.sun-icon {
+    position: absolute;
+    top: -10px;
+    right: -50px;
+    font-size: 3rem;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Informações do jogo */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.score-board {
+    display: flex;
+    gap: 30px;
+}
+
+.score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.score-label {
+    font-weight: 600;
+    color: #FF6B35;
+    font-size: 0.9rem;
+}
+
+.score-value {
+    font-weight: 700;
+    color: #118AB2;
+    font-size: 1.2rem;
+}
+
+.btn-restart {
+    background: linear-gradient(45deg, #FF6B35, #F7931E);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-restart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-restart:active {
+    transform: translateY(0);
+}
+
+/* Tabuleiro do jogo */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Cartas */
+.card {
+    aspect-ratio: 1;
+    background: linear-gradient(45deg, #FFFFFF, #F8F9FA);
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 3px solid #FFD23F;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    animation: match-celebration 0.6s ease;
+}
+
+@keyframes match-celebration {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-front {
+    background: linear-gradient(45deg, #06D6A0, #118AB2);
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    background: linear-gradient(45deg, #FFD23F, #F7931E);
+    transform: rotateY(0deg);
+}
+
+.card-image {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-back-image {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 8px;
+    opacity: 0.9;
+}
+
+/* Modal de vitória */
+.victory-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #FFFFFF, #F8F9FA);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 3px solid #FFD23F;
+    animation: modal-appear 0.5s ease;
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-content h2 {
+    font-family: 'Fredoka One', cursive;
+    color: #FF6B35;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    color: #118AB2;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.final-stats {
+    background: rgba(255, 210, 63, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.final-stats p {
+    margin: 5px 0;
+    color: #FF6B35;
+    font-weight: 700;
+}
+
+.btn-play-again {
+    background: linear-gradient(45deg, #06D6A0, #118AB2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(6, 214, 160, 0.3);
+}
+
+.btn-play-again:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(6, 214, 160, 0.4);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .score-board {
+        gap: 20px;
+    }
+    
+    .game-board {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .sun-icon {
+        position: static;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-board {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .score-board {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .score-item {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+/* Animações adicionais */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.card:active {
+    animation: pulse 0.3s ease;
+}
+
+/* Efeitos de partículas para celebração */
+.celebration-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FFD23F;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float 2s ease-out forwards;
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0);
+    }
+}
+
