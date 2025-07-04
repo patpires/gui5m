@@ -240,10 +240,10 @@ body {
 }
 
 .card-image {
-    width: 95%;
-    height: 95%;
-    object-fit: contain;
-    padding: 5px;
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .card-back-image {
@@ -428,3 +428,4 @@ body {
         transform: translateY(-100px) scale(0);
     }
 }
+
